@@ -449,35 +449,34 @@
         <p>&copy; 2024 Famous Temples of Mangalore. All rights reserved.</p>
     </footer>
     <script><
-        // script.js
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Select all "Read More" buttons
-    const readMoreButtons = document.querySelectorAll('.read-more-btn');
-    
-    // Add event listener to each "Read More" button
-    readMoreButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const moreInfoDiv = this.nextElementSibling;
-            moreInfoDiv.classList.add('show');
-            this.style.display = 'none';
-            moreInfoDiv.querySelector('.read-less-btn').style.display = 'block';
+        document.addEventListener("DOMContentLoaded", () => {
+            // Select all "Read More" buttons
+            const readMoreButtons = document.querySelectorAll('.read-more-btn');
+            
+            // Add event listener to each "Read More" button
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const moreInfoDiv = this.nextElementSibling;
+                    moreInfoDiv.classList.add('show');
+                    this.style.display = 'none';
+                    moreInfoDiv.querySelector('.read-less-btn').style.display = 'block';
+                });
+            });
+        
+            // Select all "Read Less" buttons
+            const readLessButtons = document.querySelectorAll('.read-less-btn');
+        
+            // Add event listener to each "Read Less" button
+            readLessButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const moreInfoDiv = this.parentElement;
+                    moreInfoDiv.classList.remove('show');
+                    moreInfoDiv.previousElementSibling.style.display = 'block';
+                    this.style.display = 'none';
+                });
+            });
         });
-    });
-
-    // Select all "Read Less" buttons
-    const readLessButtons = document.querySelectorAll('.read-less-btn');
-
-    // Add event listener to each "Read Less" button
-    readLessButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const moreInfoDiv = this.parentElement;
-            moreInfoDiv.classList.remove('show');
-            moreInfoDiv.previousElementSibling.style.display = 'block';
-            this.style.display = 'none';
-        });
-    });
-});
-/script>
+        /script>
 </body>
 </html>
