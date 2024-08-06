@@ -4,6 +4,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+.namrayanaimg{
+    width: 100px;
+    height: 100px;
+}
 
 body {
     font-family: Arial, sans-serif;
