@@ -4,479 +4,669 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Famous Temples of Mangalore</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic Reset and General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: #555;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+
+        #home {
+            text-align: center;
+            padding: 50px 20px;
+            background: #f4f4f4;
+        }
+
+        #home h1 {
+            margin-top: 0;
+        }
+
+        #temples {
+            padding: 20px;
+        }
+
+        .temple {
+            margin-bottom: 40px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .temple img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .temple h2 {
+            margin-top: 0;
+        }
+
+        .location a {
+            display: flex;
+            align-items: center;
+            color: #007BFF;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .location a i {
+            margin-right: 5px;
+        }
+
+        .gallery {
+            margin-top: 20px;
+        }
+
+        .gallery h3 {
+            margin-top: 0;
+        }
+
+        .gallery-grid {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .gallery-item {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay h3 {
+            margin: 0;
+            text-align: center;
+        }
+
+        .read-more-btn,
+        .read-less-btn {
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .read-more-btn:hover,
+        .read-less-btn:hover {
+            background: #0056b3;
+        }
+
+        .more-info {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .more-info h4 {
+            margin-top: 0;
+        }
+
+        .more-info p {
+            margin: 10px 0;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: #222;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contact-info,
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+        }
+
+        .contact-info h3,
+        .contact-form h3 {
+            margin-top: 0;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+        }
+
+        .contact-info .social-media {
+            margin-top: 15px;
+        }
+
+        .contact-info .social-media a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info .social-media a:hover {
+            color: #ff9900;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form label {
+            margin: 10px 0 5px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form button {
+            background: #ff9900;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #e68a00;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-info,
+            .contact-form {
+                margin: 0;
+                width: 100%;
+                max-width: 600px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Famous Temples of Mangalore</h1>
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#kudroli">Kudroli Gokarnath Temple</a></li>
-                <li><a href="#mangaladevi">Mangaladevi Temple</a></li>
-                <li><a href="#kateel">Kateel Durgaparameshwari Temple</a></li>
-                <li><a href="#srinivas">Srinivas Temple</a></li>
-                <li><a href="#durga">Durga Temple</a></li>
-                <li><a href="#shree">Shree Mahalingeshwara Temple</a></li>
-                <li><a href="#siddhivinayak">Siddhivinayak Temple</a></li>
-                <li><a href="#lakshmi">Lakshmi Temple</a></li>
-                <li><a href="#ganesha">Ganesha Temple</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#temples">Temples</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="about" class="intro">
-            <h2>About Mangalore Temples</h2>
-            <p>Mangalore, a coastal city in Karnataka, India, is known for its rich cultural heritage and beautiful temples. These temples are not only places of worship but also architectural marvels that attract tourists from all over the world. Here are some of the most famous temples in Mangalore that you should visit.</p>
+        <section id="home">
+            <h1>Welcome to Famous Temples of Mangalore</h1>
+            <p>Explore the spiritual and architectural marvels of Mangalore's temples.</p>
         </section>
 
-        <!-- Kudroli Gokarnath Temple Section -->
-        <section id="kudroli" class="temple">
-            <h2>Kudroli Gokarnath Temple</h2>
-            <img src="kudroli.jpg" alt="Kudroli Gokarnath Temple">
-            <p>Kudroli Gokarnath Temple is a beautiful temple in Mangalore dedicated to Lord Shiva.</p>
-            <div class="location">
-                <a href="https://www.google.com/maps/place/Kudroli+Gokarnath+Temple" target="_blank">
-                    <i class="fas fa-map-marker-alt"></i> View on Google Maps
-                </a>
-            </div>
-            <div class="gallery">
-                <h3>Gallery</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="kudroli1.jpg" alt="Kudroli Temple Image 1">
-                        <div class="overlay">
-                            <h3>Kudroli Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="kudroli2.jpg" alt="Kudroli Temple Image 2">
-                        <div class="overlay">
-                            <h3>Kudroli Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="kudroli3.jpg" alt="Kudroli Temple Image 3">
-                        <div class="overlay">
-                            <h3>Kudroli Temple</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="read-more-btn">Read More</button>
-            <div class="more-info">
-                <h4>History</h4>
-                <p>Kudroli Gokarnath Temple was established in 1912 by Narayana Guru. It has become a major center for worship and a hub for religious activities.</p>
-                <h4>Festivals & Events</h4>
-                <p>The temple is renowned for its Navaratri celebrations, which are attended by thousands of devotees. Other major events include the annual temple festival and the Rathotsava (chariot festival).</p>
-                <button class="read-less-btn">Read Less</button>
-            </div>
-        </section>
+        <section id="temples">
+            <h2>Temples</h2>
 
-        <!-- Mangaladevi Temple Section -->
-        <section id="mangaladevi" class="temple">
-            <h2>Mangaladevi Temple</h2>
-            <img src="mangaladevi.jpg" alt="Mangaladevi Temple">
-            <p>Mangaladevi Temple is an ancient temple in Mangalore dedicated to Goddess Mangaladevi.</p>
-            <div class="location">
-                <a href="https://www.google.com/maps/place/Mangaladevi+Temple" target="_blank">
-                    <i class="fas fa-map-marker-alt"></i> View on Google Maps
-                </a>
-            </div>
-            <div class="gallery">
-                <h3>Gallery</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="mangaladevi1.jpg" alt="Mangaladevi Temple Image 1">
-                        <div class="overlay">
-                            <h3>Mangaladevi Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="mangaladevi2.jpg" alt="Mangaladevi Temple Image 2">
-                        <div class="overlay">
-                            <h3>Mangaladevi Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="mangaladevi3.jpg" alt="Mangaladevi Temple Image 3">
-                        <div class="overlay">
-                            <h3>Mangaladevi Temple</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="read-more-btn">Read More</button>
-            <div class="more-info">
-                <h4>History</h4>
-                <p>Mangaladevi Temple, built in the 9th century, is a significant historical and religious site. The temple is named after Goddess Mangaladevi and is believed to be the origin of the name of the city, Mangalore.</p>
-                <h4>Festivals & Events</h4>
-                <p>The temple is particularly famous for its Navaratri festival, which draws pilgrims from far and wide. The annual festival sees a grand celebration with traditional dances and processions.</p>
-                <button class="read-less-btn">Read Less</button>
-            </div>
-        </section>
-
-        <!-- Kateel Durgaparameshwari Temple Section -->
-        <section id="kateel" class="temple">
-            <h2>Kateel Durgaparameshwari Temple</h2>
-            <img src="kateel.jpg" alt="Kateel Durgaparameshwari Temple">
-            <p>Kateel Durgaparameshwari Temple is located on an islet in the Nandini River and is dedicated to Goddess Durga Parameshwari.</p>
-            <div class="location">
-                <a href="https://www.google.com/maps/place/Kateel+Durgaparameshwari+Temple" target="_blank">
-                    <i class="fas fa-map-marker-alt"></i> View on Google Maps
-                </a>
-            </div>
-            <div class="gallery">
-                <h3>Gallery</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="kateel1.jpg" alt="Kateel Temple Image 1">
-                        <div class="overlay">
-                            <h3>Kateel Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="kateel2.jpg" alt="Kateel Temple Image 2">
-                        <div class="overlay">
-                            <h3>Kateel Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="kateel3.jpg" alt="Kateel Temple Image 3">
-                        <div class="overlay">
-                            <h3>Kateel Temple</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="read-more-btn">Read More</button>
-            <div class="more-info">
-                <h4>History</h4>
-                <p>Kateel Durgaparameshwari Temple is renowned for its location on an islet in the Nandini River. It is a prominent pilgrimage site and is dedicated to Goddess Durga Parameshwari.</p>
-                <h4>Festivals & Events</h4>
-                <p>The temple is famous for its annual Durga Puja and Rathotsava (chariot festival). These events attract thousands of devotees and are celebrated with grandeur.</p>
-                <button class="read-less-btn">Read Less</button>
-            </div>
-        </section>
-
-        <!-- Srinivas Temple Section -->
-        <section id="srinivas" class="temple">
-            <h2>Srinivas Temple</h2>
-            <img src="srinivas.jpg" alt="Srinivas Temple">
-            <p>Srinivas Temple is dedicated to Lord Srinivasa and is known for its architectural beauty.</p>
-            <div class="location">
-                <a href="https://www.google.com/maps/place/Srinivas+Temple" target="_blank">
-                    <i class="fas fa-map-marker-alt"></i> View on Google Maps
-                </a>
-            </div>
-            <div class="gallery">
-                <h3>Gallery</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="srinivas1.jpg" alt="Srinivas Temple Image 1">
-                        <div class="overlay">
-                            <h3>Srinivas Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="srinivas2.jpg" alt="Srinivas Temple Image 2">
-                        <div class="overlay">
-                            <h3>Srinivas Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="srinivas3.jpg" alt="Srinivas Temple Image 3">
-                        <div class="overlay">
-                            <h3>Srinivas Temple</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="read-more-btn">Read More</button>
-            <div class="more-info">
-                <h4>History</h4>
-                <p>Srinivas Temple, established in the early 20th century, is known for its stunning architecture and spiritual significance. It attracts devotees throughout the year.</p>
-                <h4>Festivals & Events</h4>
-                <p>The temple celebrates festivals like Rama Navami and Deepavali with traditional rituals and festivities.</p>
-                <button class="read-less-btn">Read Less</button>
-            </div>
-        </section>
-
-        <!-- Durga Temple Section -->
-        <section id="durga" class="temple">
-            <h2>Durga Temple</h2>
-            <img src="durga.jpg" alt="Durga Temple">
-            <p>Durga Temple is a significant shrine dedicated to Goddess Durga, known for its serene ambiance.</p>
-            <div class="location">
-                <a href="https://www.google.com/maps/place/Durga+Temple" target="_blank">
-                    <i class="fas fa-map-marker-alt"></i> View on Google Maps
-                </a>
-            </div>
-            <div class="gallery">
-                <h3>Gallery</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="durga1.jpg" alt="Durga Temple Image 1">
-                        <div class="overlay">
-                            <h3>Durga Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="durga2.jpg" alt="Durga Temple Image 2">
-                     <div class="overlay">
-                            <h3>Durga Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="durga3.jpg" alt="Durga Temple Image 3">
-                        <div class="overlay">
-                            <h3>Durga Temple</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="read-more-btn">Read More</button>
-            <div class="more-info">
-                <h4>History</h4>
-                <p>Durga Temple has a long history and is known for its peaceful environment and devotional practices.</p>
-                <h4>Festivals & Events</h4>
-                <p>The temple observes Durga Puja with elaborate rituals and festive celebrations.</p>
-                <button class="read-less-btn">Read Less</button>
-            </div>
-        </section>
-
-        <!-- Shree Mahalingeshwara Temple Section -->
-        <section id="shree" class="temple">
-            <h2>Shree Mahalingeshwara Temple</h2>
-            <img src="shree.jpg" alt="Shree Mahalingeshwara Temple">
-            <p>Shree Mahalingeshwara Temple is known for its dedication to Lord Mahalingeshwara and its ancient architecture.</p>
-            <div class="location">
-                <a href="https://www.google.com/maps/place/Shree+Mahalingeshwara+Temple" target="_blank">
-                    <i class="fas fa-map-marker-alt"></i> View on Google Maps
-                </a>
-            </div>
-            <div class="gallery">
-                <h3>Gallery</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="shree1.jpg" alt="Shree Mahalingeshwara Temple Image 1">
-                        <div class="overlay">
-                            <h3>Shree Mahalingeshwara Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="shree2.jpg" alt="Shree Mahalingeshwara Temple Image 2">
-                        <div class="overlay">
-                            <h3>Shree Mahalingeshwara Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="shree3.jpg" alt="Shree Mahalingeshwara Temple Image 3">
-                        <div class="overlay">
-                            <h3>Shree Mahalingeshwara Temple</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="read-more-btn">Read More</button>
-            <div class="more-info">
-                <h4>History</h4>
-                <p>The temple has been a place of worship for centuries, with a rich history and beautiful architecture.</p>
-                <h4>Festivals & Events</h4>
-                <p>Major festivals include Mahashivaratri and other significant Hindu festivals, celebrated with traditional ceremonies.</p>
-                <button class="read-less-btn">Read Less</button>
-            </div>
-        </section>
-
-        <!-- Siddhivinayak Temple Section -->
-        <section id="siddhivinayak" class="temple">
-            <h2>Siddhivinayak Temple</h2>
-            <img src="siddhivinayak.jpg" alt="Siddhivinayak Temple">
-            <p>Siddhivinayak Temple is dedicated to Lord Ganesha and is known for its vibrant celebrations.</p>
-            <div class="location">
-                <a href="https://www.google.com/maps/place/Siddhivinayak+Temple" target="_blank">
-                    <i class="fas fa-map-marker-alt"></i> View on Google Maps
-                </a>
-            </div>
-            <div class="gallery">
-                <h3>Gallery</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="siddhivinayak1.jpg" alt="Siddhivinayak Temple Image 1">
-                        <div class="overlay">
-                            <h3>Siddhivinayak Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="siddhivinayak2.jpg" alt="Siddhivinayak Temple Image 2">
-                        <div class="overlay">
-                            <h3>Siddhivinayak Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="siddhivinayak3.jpg" alt="Siddhivinayak Temple Image 3">
-                        <div class="overlay">
-                            <h3>Siddhivinayak Temple</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="read-more-btn">Read More</button>
-            <div class="more-info">
-                <h4>History</h4>
-                <p>The Siddhivinayak Temple is known for its deep religious significance and vibrant celebrations.</p>
-                <h4>Festivals & Events</h4>
-                <p>The temple celebrates Ganesh Chaturthi with grand decorations and processions.</p>
-                <button class="read-less-btn">Read Less</button>
-            </div>
-        </section>
-
-        <!-- Lakshmi Temple Section -->
-        <section id="lakshmi" class="temple">
-            <h2>Lakshmi Temple</h2>
-            <img src="lakshmi.jpg" alt="Lakshmi Temple">
-            <p>Lakshmi Temple is dedicated to Goddess Lakshmi and is a popular pilgrimage site.</p>
-            <div class="location">
-                <a href="https://www.google.com/maps/place/Lakshmi+Temple" target="_blank">
-                    <i class="fas fa-map-marker-alt"></i> View on Google Maps
-                </a>
-            </div>
-            <div class="gallery">
-                <h3>Gallery</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="lakshmi1.jpg" alt="Lakshmi Temple Image 1">
-                        <div class="overlay">
-                            <h3>Lakshmi Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="lakshmi2.jpg" alt="Lakshmi Temple Image 2">
-                        <div class="overlay">
-                            <h3>Lakshmi Temple</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="lakshmi3.jpg" alt="Lakshmi Temple Image 3">
-                        <div class="overlay">
-                            <h3>Lakshmi Temple</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="read-more-btn">Read More</button>
-            <div class="more-info">
-                <h4>History</h4>
+            <!-- Lakshmi Temple Section -->
+            <section id="lakshmi" class="temple">
+                <h2>Lakshmi Temple</h2>
+                <img src="lakshmi.jpg" alt="Lakshmi Temple">
                 <p>Lakshmi Temple is a significant temple dedicated to Goddess Lakshmi, symbolizing prosperity and wealth.</p>
-                <h4>Festivals & Events</h4>
-                <p>The temple is particularly vibrant during Diwali and other major Hindu festivals.</p>
-                <button class="read-less-btn">Read Less</button>
-            </div>
-        </section>
-
-        <!-- Ganesha Temple Section -->
-        <section id="ganesha" class="temple">
-            <h2>Ganesha Temple</h2>
-            <img src="ganesha.jpg" alt="Ganesha Temple">
-            <p>Ganesha Temple is dedicated to Lord Ganesha and is known for its elaborate Ganesh Chaturthi celebrations.</p>
-            <div class="location">
-                <a href="https://www.google.com/maps/place/Ganesha+Temple" target="_blank">
-                    <i class="fas fa-map-marker-alt"></i> View on Google Maps
-                </a>
-            </div>
-            <div class="gallery">
-                <h3>Gallery</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="ganesha1.jpg" alt="Ganesha Temple Image 1">
-                        <div class="overlay">
-                            <h3>Ganesha Temple</h3>
+                <div class="location">
+                    <a href="https://www.google.com/maps/place/Lakshmi+Temple" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> View on Google Maps
+                    </a>
+                </div>
+                <div class="gallery">
+                    <h3>Gallery</h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="lakshmi1.jpg" alt="Lakshmi Temple Image 1">
+                            <div class="overlay">
+                                <h3>Lakshmi Temple</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="ganesha2.jpg" alt="Ganesha Temple Image 2">
-                        <div class="overlay">
-                            <h3>Ganesha Temple</h3>
+                        <div class="gallery-item">
+                            <img src="lakshmi2.jpg" alt="Lakshmi Temple Image 2">
+                            <div class="overlay">
+                                <h3>Lakshmi Temple</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="ganesha3.jpg" alt="Ganesha Temple Image 3">
-                        <div class="overlay">
-                            <h3>Ganesha Temple</h3>
+                        <div class="gallery-item">
+                            <img src="lakshmi3.jpg" alt="Lakshmi Temple Image 3">
+                            <div class="overlay">
+                                <h3>Lakshmi Temple</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <button class="read-more-btn">Read More</button>
-            <div class="more-info">
-                <h4>History</h4>
-                <p>Ganesha Temple is a revered site for worshiping Lord Ganesha, known for its festive ambiance during Ganesh Chaturthi.</p>
-                <h4>Festivals & Events</h4>
-                <p>The temple hosts grand celebrations for Ganesh Chaturthi, including processions and community feasts.</p>
-                <button class="read-less-btn">Read Less</button>
-            </div>
-        </section>
+                <button class="read-more-btn">Read More</button>
+                <div class="more-info">
+                    <h4>History</h4>
+                    <p>Lakshmi Temple is a renowned site that has been a center of devotion for centuries. The temple is known for its intricate carvings and historical significance.</p>
+                    <h4>Festivals & Events</h4>
+                    <p>The temple celebrates various festivals including Diwali and Lakshmi Puja with grandeur and devotion.</p>
+                    <h4>Location</h4>
+                    <p>Located in the heart of Mangalore, the Lakshmi Temple is easily accessible and a must-visit for devotees.</p>
+                    <button class="read-less-btn">Read Less</button>
+                </div>
+            </section>
 
-        <!-- More temple sections here... -->
+            <!-- Saraswati Temple Section -->
+            <section id="saraswati" class="temple">
+                <h2>Saraswati Temple</h2>
+                <img src="saraswati.jpg" alt="Saraswati Temple">
+                <p>Saraswati Temple is dedicated to Goddess Saraswati, revered for wisdom and learning.</p>
+                <div class="location">
+                    <a href="https://www.google.com/maps/place/Saraswati+Temple" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> View on Google Maps
+                    </a>
+                </div>
+                <div class="gallery">
+                    <h3>Gallery</h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="saraswati1.jpg" alt="Saraswati Temple Image 1">
+                            <div class="overlay">
+                                <h3>Saraswati Temple</h3>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="saraswati2.jpg" alt="Saraswati Temple Image 2">
+                            <div class="overlay">
+                                <h3>Saraswati Temple</h3>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="saraswati3.jpg" alt="Saraswati Temple Image 3">
+                            <div class="overlay">
+                                <h3>Saraswati Temple</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="read-more-btn">Read More</button>
+                <div class="more-info">
+                    <h4>History</h4>
+                    <p>Saraswati Temple is a prominent site for devotees seeking wisdom and learning. The temple is known for its peaceful ambiance and artistic architecture.</p>
+                    <h4>Festivals & Events</h4>
+                    <p>The temple hosts special events during Vasant Panchami, celebrating Goddess Saraswati with music, dance, and cultural programs.</p>
+                    <h4>Location</h4>
+                    <p>Located in the educational hub of Mangalore, the Saraswati Temple is easily accessible and frequented by students and scholars.</p>
+                    <button class="read-less-btn">Read Less</button>
+                </div>
+            </section>
 
-        <section id="contact" class="contact">
-            <h2>Contact</h2>
-            <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                <button type="submit">Send</button>
-            </form>
-            <div class="social-media">
-                <a href="https://www.instagram.com/yourprofile" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.facebook.com/yourprofile" target="_blank">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://www.twitter.com/yourprofile" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
-            </div>
+            <!-- Gokarnath Temple Section -->
+            <section id="gokarnath" class="temple">
+                <h2>Gokarnath Temple</h2>
+                <img src="gokarnath.jpg" alt="Gokarnath Temple">
+                <p>Gokarnath Temple is dedicated to Lord Shiva and is a significant pilgrimage site.</p>
+                <div class="location">
+                    <a href="https://www.google.com/maps/place/Gokarnath+Temple" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> View on Google Maps
+                    </a>
+                </div>
+                <div class="gallery">
+                    <h3>Gallery</h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="gokarnath1.jpg" alt="Gokarnath Temple Image 1">
+                            <div class="overlay">
+                                <h3>Gokarnath Temple</h3>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="gokarnath2.jpg" alt="Gokarnath Temple Image 2">
+                            <div class="overlay">
+                                <h3>Gokarnath Temple</h3>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="gokarnath3.jpg" alt="Gokarnath Temple Image 3">
+                            <div class="overlay">
+                                <h3>Gokarnath Temple</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="read-more-btn">Read More</button>
+                <div class="more-info">
+                    <h4>History</h4>
+                    <p>Gokarnath Temple is one of the oldest temples in Mangalore, known for its historic significance and architectural beauty.</p>
+                    <h4>Festivals & Events</h4>
+                    <p>The temple celebrates Maha Shivaratri with elaborate rituals and festivities.</p>
+                    <h4>Location</h4>
+                    <p>Located in the northern part of Mangalore, Gokarnath Temple is a prominent landmark.</p>
+                    <button class="read-less-btn">Read Less</button>
+                </div>
+            </section>
+
+            <!-- Mangaladevi Temple Section -->
+            <section id="mangaladevi" class="temple">
+                <h2>Mangaladevi Temple</h2>
+                <img src="mangaladevi.jpg" alt="Mangaladevi Temple">
+                <p>Mangaladevi Temple is dedicated to Goddess Mangaladevi, the patron deity of Mangalore.</p>
+                <div class="location">
+                    <a href="https://www.google.com/maps/place/Mangaladevi+Temple" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> View on Google Maps
+                    </a>
+                </div>
+                <div class="gallery">
+                    <h3>Gallery</h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="mangaladevi1.jpg" alt="Mangaladevi Temple Image 1">
+                            <div class="overlay">
+                                <h3>Mangaladevi Temple</h3>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="mangaladevi2.jpg" alt="Mangaladevi Temple Image 2">
+                            <div class="overlay">
+                                <h3>Mangaladevi Temple</h3>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="mangaladevi3.jpg" alt="Mangaladevi Temple Image 3">
+                            <div class="overlay">
+                                <h3>Mangaladevi Temple</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="read-more-btn">Read More</button>
+                <div class="more-info">
+                    <h4>History</h4>
+                    <p>Mangaladevi Temple is revered as the origin of the name "Mangalore" and is a historic site of great significance.</p>
+                    <h4>Festivals & Events</h4>
+                    <p>The temple hosts the Mangaladevi Festival, attracting large crowds from all over the region.</p>
+                    <h4>Location</h4>
+                    <p>Situated in the central area of Mangalore, it is easily accessible and a key tourist destination.</p>
+                    <button class="read-less-btn">Read Less</button>
+                </div>
+            </section>
+
+            <!-- Kudroli Temple Section -->
+            <section id="kudroli" class="temple">
+                <h2>Kudroli Temple</h2>
+                <img src="kudroli.jpg" alt="Kudroli Temple">
+                <p>Kudroli Temple is known for its vibrant celebrations and modern architecture.</p>
+                <div class="location">
+                    <a href="https://www.google.com/maps/place/Kudroli+Temple" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> View on Google Maps
+                    </a>
+                </div>
+                <div class="gallery">
+                    <h3>Gallery</h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="kudroli1.jpg" alt="Kudroli Temple Image 1">
+                            <div class="overlay">
+                                <h3>Kudroli Temple</h3>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="kudroli2.jpg" alt="Kudroli Temple Image 2">
+                            <div class="overlay">
+                                <h3>Kudroli Temple</h3>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="kudroli3.jpg" alt="Kudroli Temple Image 3">
+                            <div class="overlay">
+                                <h3>Kudroli Temple</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="read-more-btn">Read More</button>
+                <div class="more-info">
+                    <h4>History</h4>
+                    <p>Kudroli Temple, built in the 20th century, is known for its unique modern architectural style and vibrant festivities.</p>
+                    <h4>Festivals & Events</h4>
+                    <p>The temple's grand annual festival, Navratri, is celebrated with great enthusiasm and colorful processions.</p>
+                    <h4>Location</h4>
+                    <p>Located in the heart of Mangalore, Kudroli Temple is accessible and well-known among locals and visitors alike.</p>
+                    <button class="read-less-btn">Read Less</button>
+                </div>
+            </section>
+
+            <!-- Shree Venkataramana Temple Section -->
+            <section id="venkataramana" class="temple">
+                <h2>Shree Venkataramana Temple</h2>
+                <img src="venkataramana.jpg" alt="Shree Venkataramana Temple">
+                <p>Shree Venkataramana Temple is dedicated to Lord Venkateshwara, a significant deity in the region.</p>
+                <div class="location">
+                    <a href="https://www.google.com/maps/place/Shree+Venkataramana+Temple" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> View on Google Maps
+                    </a>
+                </div>
+                <div class="gallery">
+                    <h3>Gallery</h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="venkataramana1.jpg" alt="Shree Venkataramana Temple Image 1">
+                            <div class="overlay">
+                                <h3>Shree Venkataramana Temple</h3>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="venkataramana2.jpg" alt="Shree Venkataramana Temple Image 2">
+                            <div class="overlay">
+                                <h3>Shree Venkataramana Temple</h3>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="venkataramana3.jpg" alt="Shree Venkataramana Temple Image 3">
+                            <div class="overlay">
+                                <h3>Shree Venkataramana Temple</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="read-more-btn">Read More</button>
+                <div class="more-info">
+                    <h4>History</h4>
+                    <p>Shree Venkataramana Temple has been a center of devotion for centuries, with a rich history and impressive architecture.</p>
+                    <h4>Festivals & Events</h4>
+                    <p>The temple hosts various religious festivals and cultural events throughout the year.</p>
+                    <h4>Location</h4>
+                    <p>Located in the city center, the temple is easily accessible for devotees and tourists.</p>
+                    <button class="read-less-btn">Read Less</button>
+                </div>
+            </section>
+
+            <!-- St. Aloysius Chapel Section -->
+            <section id="st-aloysius" class="temple">
+                <h2>St. Aloysius Chapel</h2>
+                <img src="st-aloysius.jpg" alt="St. Aloysius Chapel">
+                <p>St. Aloysius Chapel is known for its stunning frescoes and serene environment.</p>
+                <div class="location">
+                    <a href="https://www.google.com/maps/place/St.+Aloysius+Chapel" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> View on Google Maps
+                    </a>
+                </div>
+                <div class="gallery">
+                    <h3>Gallery</h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="st-aloysius1.jpg" alt="St. Aloysius Chapel Image 1">
+                            <div class="overlay">
+                                <h3>St. Aloysius Chapel</h3>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="st-aloysius2.jpg" alt="St. Aloysius Chapel Image 2">
+                            <div class="overlay">
+                                <h3>St. Aloysius Chapel</h3>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="st-aloysius3.jpg" alt="St. Aloysius Chapel Image 3">
+                            <div class="overlay">
+                                <h3>St. Aloysius Chapel</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="read-more-btn">Read More</button>
+                <div class="more-info">
+                    <h4>History</h4>
+                    <p>St. Aloysius Chapel is famous for its exquisite frescoes painted by Italian artist Antonio Moscheni.</p>
+                    <h4>Festivals & Events</h4>
+                    <p>The chapel hosts special religious events and cultural programs throughout the year.</p>
+                    <h4>Location</h4>
+                    <p>Situated in the heart of Mangalore, St. Aloysius Chapel is a popular destination for art and history enthusiasts.</p>
+                    <button class="read-less-btn">Read Less</button>
+                </div>
+            </section>
+
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 Famous Temples of Mangalore. All rights reserved.</p>
-    </footer>
-    <script><
+        <div class="footer-container">
+            <div class="contact-info">
+                <h3>Contact Info</h3>
+                <p><strong>Phone:</strong> 9380634950</p>
+                <p><strong>Email:</strong> mohanpoojari658@gmail.com</p>
+                <div class="social-media">
+                    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Contact Form</h3>
+                <form>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
 
-        document.addEventListener("DOMContentLoaded", () => {
-            // Select all "Read More" buttons
-            const readMoreButtons = document.querySelectorAll('.read-more-btn');
-            
-            // Add event listener to each "Read More" button
-            readMoreButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const moreInfoDiv = this.nextElementSibling;
-                    moreInfoDiv.classList.add('show');
-                    this.style.display = 'none';
-                    moreInfoDiv.querySelector('.read-less-btn').style.display = 'block';
-                });
-            });
-        
-            // Select all "Read Less" buttons
-            const readLessButtons = document.querySelectorAll('.read-less-btn');
-        
-            // Add event listener to each "Read Less" button
-            readLessButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const moreInfoDiv = this.parentElement;
-                    moreInfoDiv.classList.remove('show');
-                    moreInfoDiv.previousElementSibling.style.display = 'block';
-                    this.style.display = 'none';
-                });
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- JavaScript for Read More / Read Less -->
+    <script>
+        document.querySelectorAll('.read-more-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const moreInfo = this.nextElementSibling;
+                moreInfo.style.display = 'block';
+                this.style.display = 'none';
+                moreInfo.nextElementSibling.style.display = 'block';
             });
         });
-        /script>
+
+        document.querySelectorAll('.read-less-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const moreInfo = this.parentElement;
+                moreInfo.style.display = 'none';
+                moreInfo.previousElementSibling.style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
