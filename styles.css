@@ -12,13 +12,13 @@ body {
     background-color: #f5f5f5;
 }
 
-/* Header */
+
 header {
     background: linear-gradient(135deg, #20aff1 0%, #2575fc 100%);
     color: #fff;
     padding: 1.5rem 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 1000;
 }
@@ -115,7 +115,7 @@ h1, h2, h3, h4 {
 
 .gallery-item img {
     width: 100%;
-    height: auto;
+    height: 70%;
     transition: transform 0.3s, opacity 0.3s;
 }
 
